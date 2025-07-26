@@ -1,6 +1,10 @@
 <?php
 require_once "conexion.php";
 
+// Mostrar errores (por si falla algo)
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 // Verificar si se envió el formulario por POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre = trim($_POST["nombre"]);
@@ -28,18 +32,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
     // Insertar en la base de datos
-    $stmt = $conn->prepare("INSERT INTO usuarios (nombre, email, contraseña) VALUES (?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO usuarios (nombre, email, password) VALUES (?, ?, ?)");
     $stmt->bind_param("sss", $nombre, $email, $passwordHash);
 
     if ($stmt->execute()) {
         echo "Registro exitoso.";
-        // Puedes redirigir si deseas: header("Location: login.html");
+        // Aquí podrías redirigir si quieres:
+        // header("Location: login.html");
+        // exit;
     } else {
         echo "Error al registrar: " . $stmt->error;
+        error_log("Error al registrar usuario: " . $stmt->error);
     }
 
     $stmt->close();
     $conn->close();
+
 } else {
     echo "Acceso inválido.";
 }
