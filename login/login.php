@@ -23,22 +23,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $usuario = $resultado->fetch_assoc();
 
         // Verificar contraseña
-        if (password_verify($password, $usuario["contraseña"])) {
+        if (password_verify($password, $usuario["password"])) {
             // Iniciar sesión
             $_SESSION["usuario_id"] = $usuario["id"];
             $_SESSION["nombre"] = $usuario["nombre"];
             $_SESSION["email"] = $usuario["email"];
 
             // Redirigir al dashboard
-            header("Location: dashboard.php");
+            header("Location: ../user/index_user.html");
             exit;
         } else {
-            echo "Contraseña incorrecta.";
+            echo "<script>
+                alert('Contraseña incorrecta.');
+                window.location.href = '../login/login.html';
+                </script>";
         }
     } else {
-        echo "Usuario no encontrado.";
+        echo "<script>
+            alert('Usuario no encontrado.');
+            window.location.href = '../login/login.html';
+            </script>";
     }
-
     $stmt->close();
     $conn->close();
 } else {
