@@ -1,7 +1,7 @@
 <?php
 session_start(); // Inicia sesión
 
-require_once "conexion.php";
+require_once "../conexion.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST["email"]);
@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Buscar al usuario por email
-    $stmt = $conn->prepare("SELECT id, nombre, email, contraseña FROM usuarios WHERE email = ?");
+    $stmt = $conn->prepare("SELECT id, nombre, email, password FROM usuarios WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     

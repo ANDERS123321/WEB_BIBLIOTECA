@@ -1,5 +1,5 @@
 <?php
-require_once "conexion.php";
+require_once "../conexion.php";
 
 // Mostrar errores (por si falla algo)
 ini_set('display_errors', 1);
@@ -36,7 +36,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("sss", $nombre, $email, $passwordHash);
 
     if ($stmt->execute()) {
-        echo "Registro exitoso.";
+        echo "<script>
+        alert('Registro exitoso');
+        window.location.href = '../login/login.html';
+        </script>";
         // Aquí podrías redirigir si quieres:
         // header("Location: login.html");
         // exit;

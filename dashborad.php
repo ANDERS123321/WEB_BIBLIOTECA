@@ -3,7 +3,7 @@ session_start();
 
 // Verificamos si hay una sesión activa
 if (!isset($_SESSION["usuario_id"])) {
-    header("Location: login.html"); // Redirigir si no ha iniciado sesión
+    header("Location: ./login/login.html"); // Redirigir si no ha iniciado sesión
     exit;
 }
 ?>
