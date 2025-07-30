@@ -24,7 +24,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($password !== $confirmPassword) {
-        echo "Las contraseñas no coinciden.";
+        echo "<script>
+            alert('Las contraseñas no coinciden')
+            window.location.href = 'registro.html';
+            </script>";
         exit;
     }
 
