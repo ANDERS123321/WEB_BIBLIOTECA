@@ -10,19 +10,19 @@ const libros = [
     titulo: "El Principito",
     autor: "Antoine de Saint-Exupéry",
     descripcion: "Un clásico que mezcla filosofía y fantasía sobre un niño que viaja por el universo.",
-    imagen: "./assets/img/el_principito.webp",
+    imagen: "../assets/img/el_principito.webp",
   },
   {
     titulo: "Cien Años de Soledad",
     autor: "Gabriel García Márquez",
     descripcion: "Una obra maestra del realismo mágico que narra la historia de la familia Buendía.",
-    imagen: "./assets/img/cien_anos_soledad.jpg",
+    imagen: "../assets/img/cien_anos_soledad.jpg",
   },
   {
     titulo: "1984",
     autor: "George Orwell",
     descripcion: "Una novela distópica sobre el control totalitario y la vigilancia extrema.",
-    imagen: "./assets/img/1984.jpg",
+    imagen: "../assets/img/1984.jpg",
   },
 ];
 

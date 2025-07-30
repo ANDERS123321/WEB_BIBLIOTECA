@@ -13,7 +13,7 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
   if (email === "123@biblioteca.com" && password === "123456") {
     alert("Inicio de sesión exitoso ✅");
     // Redireccionar o abrir página principal
-    window.location.href = "index_admin.html";
+    window.location.href = "../index_admin.html";
   } else {
     alert("Correo o contraseña incorrectos ❌");
   }

@@ -1,7 +1,7 @@
 <?php
 session_start(); // Inicia sesión
 
-require_once "conexion.php";
+require_once "../conexion.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST["email"]);
@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Buscar al usuario por email
-    $stmt = $conn->prepare("SELECT id, nombre, email, contraseña FROM usuarios WHERE email = ?");
+    $stmt = $conn->prepare("SELECT id, nombre, email, password FROM usuarios WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     
@@ -23,22 +23,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $usuario = $resultado->fetch_assoc();
 
         // Verificar contraseña
-        if (password_verify($password, $usuario["contraseña"])) {
+        if (password_verify($password, $usuario["password"])) {
             // Iniciar sesión
             $_SESSION["usuario_id"] = $usuario["id"];
             $_SESSION["nombre"] = $usuario["nombre"];
             $_SESSION["email"] = $usuario["email"];
 
             // Redirigir al dashboard
-            header("Location: dashboard.php");
+            header("Location: ../user/index_user.html");
             exit;
         } else {
-            echo "Contraseña incorrecta.";
+            echo "<script>
+                alert('Contraseña incorrecta.');
+                window.location.href = '../login/login.html';
+                </script>";
         }
     } else {
-        echo "Usuario no encontrado.";
+        echo "<script>
+            alert('Usuario no encontrado.');
+            window.location.href = '../login/login.html';
+            </script>";
     }
-
     $stmt->close();
     $conn->close();
 } else {
