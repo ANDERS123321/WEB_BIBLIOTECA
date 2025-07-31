@@ -51,26 +51,34 @@
     class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden px-4">
     <div class="bg-white dark:bg-gray-800 p-6 rounded-lg w-full max-w-md">
       <h3 id="modalTitulo" class="text-xl font-bold mb-4 dark:text-white">Agregar Libro</h3>
-      <form id="formLibro" class="space-y-4">
+      <form id="formLibro" class="space-y-4" method="post" action="libros.php">
         <input type="hidden" id="libroId" />
 
         <div>
           <label class="block text-sm font-medium dark:text-gray-300">Título</label>
-          <input type="text" id="titulo"
+          <input 
+            type="text" 
+            id="titulo" 
+            name="titulo"
             class="w-full px-3 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white"
             required />
         </div>
 
         <div>
           <label class="block text-sm font-medium dark:text-gray-300">Autor</label>
-          <input type="text" id="autor"
+          <input 
+            type="text"  
+            id="autor" 
+            name="autor"
             class="w-full px-3 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white"
             required />
         </div>
 
         <div>
           <label class="block text-sm font-medium dark:text-gray-300">Descripción</label>
-          <textarea id="descripcion"
+          <textarea 
+            id="descripcion" 
+            name="descripcion"
             class="w-full px-3 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white"
             required></textarea>
         </div>

@@ -46,29 +46,6 @@ document.getElementById("cancelar").addEventListener("click", () => {
   modal.classList.add("hidden");
 });
 
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const id = document.getElementById("libroId").value;
-  const nuevoLibro = {
-    id: id ? parseInt(id) : Date.now(),
-    titulo: document.getElementById("titulo").value,
-    autor: document.getElementById("autor").value,
-    descripcion: document.getElementById("descripcion").value
-  };
-
-  if (id) {
-    // Editar
-    const index = libros.findIndex((l) => l.id === parseInt(id));
-    libros[index] = nuevoLibro;
-  } else {
-    // Agregar
-    libros.push(nuevoLibro);
-  }
-
-  modal.classList.add("hidden");
-  renderTabla();
-});
-
 function editarLibro(id) {
   const libro = libros.find((l) => l.id === id);
   document.getElementById("libroId").value = libro.id;
